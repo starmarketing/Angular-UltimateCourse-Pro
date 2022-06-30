@@ -8,12 +8,11 @@ import { User } from './auth-form.interface';
 })
 export class AuthFormComponent implements OnInit {
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
+  constructor() {}
 
   onSubmit(value: User) {
     this.submitted.emit(value);
   }
-
-  constructor() {}
 
   ngOnInit(): void {}
 }
