@@ -36,6 +36,7 @@ export class CreditCardDirective {
       numbers.push(trimmed.substr(i, 4));
     }
 
+    // This line adds a space after 4 characters
     input.value = numbers.join(' ');
     this.border = '';
 
