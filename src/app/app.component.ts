@@ -10,6 +10,8 @@ export class AppComponent {
   title = 'angular-ultimatecourse-pro';
   rememberMe: boolean = false;
 
+
+  
   rememberUser(remember: boolean) {
     this.rememberMe = remember;
   }

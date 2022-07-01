@@ -6,12 +6,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { AuthRememberComponent } from './auth-form/auth-remember.component';
+import { CreditCardDirective } from './credit-card.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
-    AuthRememberComponent
+    AuthRememberComponent,
+    CreditCardDirective
   ],
   imports: [
     BrowserModule,
