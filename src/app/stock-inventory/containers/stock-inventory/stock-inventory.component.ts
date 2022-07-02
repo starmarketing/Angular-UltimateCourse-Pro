@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Product } from '../../models/product.interface';
 
 @Component({
   selector: 'stock-inventory',
@@ -8,6 +9,24 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class StockInventoryComponent implements OnInit {
   constructor() {}
+
+  products: Product[] = [
+    {
+      id: 1,
+      name: 'Apple',
+      quantity: 4,
+    },
+    {
+      id: 2,
+      name: 'Toyota',
+      quantity: 5,
+    },
+    {
+      id: 3,
+      name: 'Nissan',
+      quantity: 2,
+    },
+  ];
 
   ngOnInit(): void {}
 
@@ -18,11 +37,10 @@ export class StockInventoryComponent implements OnInit {
     }),
     selector: new FormGroup({
       product_id: new FormControl(),
-      quantity: new FormControl()
+      quantity: new FormControl(),
     }),
-    stock: new FormArray([])
+    stock: new FormArray([]),
   });
-
 
   // stock-branch
   // stock-products

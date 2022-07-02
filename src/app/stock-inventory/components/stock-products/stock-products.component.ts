@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Product } from '../../models/product.interface';
 @Component({
   selector: 'stock-products',
   templateUrl: './stock-products.component.html',
@@ -8,6 +9,10 @@ import { FormGroup } from '@angular/forms';
 export class StockProductsComponent implements OnInit {
   @Input()
   parent!: FormGroup;
+
+  @Input()
+  products!: Product[];
+
   constructor() { }
 
   ngOnInit(): void {

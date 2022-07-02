@@ -1,6 +1,6 @@
 <form [formGroup]="form" class="stock-inventory" (ngSubmit)="submit()">
   <stock-branch [parent]="form"></stock-branch>
-  <stock-products [parent]="form"></stock-products>
+  <stock-products [parent]="form" [products]="products"></stock-products>
   <stock-selector [parent]="form"></stock-selector>
 
   <button type="submit" [disabled]="form.invalid" (click)="submit()">
