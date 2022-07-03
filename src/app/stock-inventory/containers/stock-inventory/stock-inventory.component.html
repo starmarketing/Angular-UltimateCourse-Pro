@@ -4,16 +4,18 @@
   <hr />
   <h3>Stock Product</h3>
   <stock-products
-  [parent]="form"
-  [products]="products"
-  (added)="addStock($event)"
+    [parent]="form"
+    [products]="products"
+    (added)="addStock($event)"
   ></stock-products>
   <hr />
   <h3>Stock Selector</h3>
-  <stock-selector [parent]="form" 
-  (remove)="removeStock($event)"
+  <stock-selector
+    [parent]="form"
+    [map]="productMap"
+    (remove)="removeStock($event)"
   ></stock-selector>
-  
+
   <pre>{{ form.value | json }}</pre>
   <button type="submit" [disabled]="form.invalid" (click)="submit()">
     SUBMIT

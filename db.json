@@ -1,19 +1,25 @@
 {
-  "posts": [
+  "cart": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "product_id": 1,
+      "quantity": 10
     }
   ],
-  "comments": [
+  "product": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Apple",
+      "quantity": 4
+    },
+    {
+      "id": 2,
+      "name": "Toyota",
+      "quantity": 5
+    },
+    {
+      "id": 3,
+      "name": "Nissan",
+      "quantity": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Product } from '../../models/product.interface';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
+import { Item, Product } from '../../models/product.interface';
+import { StockInventory } from '../../services/stock-inventory';
+import { forkJoin } from 'rxjs'; // RxJS 6 syntax
 
 @Component({
   selector: 'stock-inventory',
@@ -8,27 +10,32 @@ import { Product } from '../../models/product.interface';
   styleUrls: ['./stock-inventory.component.scss'],
 })
 export class StockInventoryComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private stockService: StockInventory) {}
 
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Apple',
-      quantity: 4,
-    },
-    {
-      id: 2,
-      name: 'Toyota',
-      quantity: 5,
-    },
-    {
-      id: 3,
-      name: 'Nissan',
-      quantity: 2,
-    },
-  ];
+  products: Product[] = [];
 
-  ngOnInit(): void {}
+  productMap!: Map<number, Product>;
+
+  ngOnInit(): void {
+    const cart = this.stockService.getCartItems();
+    const products = this.stockService.getProducts();
+
+    forkJoin(cart, products).subscribe(
+      ([cart, products]: [Item[], Product[]]) => {
+        console.log('cart: ', cart);
+        console.log('products: ', products);
+
+        const myMap = products.map<[number, Product]>((product) => [
+          product.id,
+          product,
+        ]);
+
+        this.productMap = new Map<number, Product>(myMap);
+        this.products = products;
+        cart.forEach((item) => this.addStock(item));
+      }
+    );
+  }
 
   // form: FormGroup = new FormGroup({
   //   store: new FormGroup({
