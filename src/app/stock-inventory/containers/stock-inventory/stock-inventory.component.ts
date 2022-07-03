@@ -36,27 +36,26 @@ export class StockInventoryComponent implements OnInit {
       code: new FormControl(''),
     }),
     selector: this.createFormGroup({}),
-    stock: new FormArray([
-      this.createFormGroup({ product_id: 1, quantity: 2 }),
-      this.createFormGroup({ product_id: 2, quantity: 4 }),
-    ]),
+    stock: new FormArray([]),
   });
 
   createFormGroup(stock: any) {
     return new FormGroup({
-      // parseInt second parameter: 
-      // 2 = binary, 
-      // 8 = octal, 
-      // 10 = decimal, 
+      // parseInt second parameter:
+      // 2 = binary,
+      // 8 = octal,
+      // 10 = decimal,
       // 16 = hexadecimal.
       product_id: new FormControl(parseInt(stock.product_id, 10) || ''),
       quantity: new FormControl(stock.quantity || ''),
     });
   }
 
-  // stock-branch
-  // stock-products
-  // stock-selector
+  addStock(stock: any) {
+    const st = this.form.get('stock') as FormArray;
+    st.push(this.createFormGroup(stock));
+  }
+
   submit() {
     if (this.form.valid) console.log(this.form.value);
   }

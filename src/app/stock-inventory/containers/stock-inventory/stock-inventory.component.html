@@ -1,11 +1,19 @@
 <form [formGroup]="form" class="stock-inventory" (ngSubmit)="submit()">
+  <h3>Stock Branch</h3>
   <stock-branch [parent]="form"></stock-branch>
-  <stock-products [parent]="form" [products]="products"></stock-products>
+  <hr />
+  <h3>Stock Product</h3>
+  <stock-products
+  [parent]="form"
+  [products]="products"
+  (added)="addStock($event)"
+  ></stock-products>
+  <hr />
+  <h3>Stock Selector</h3>
   <stock-selector [parent]="form"></stock-selector>
-
+  
+  <pre>{{ form.value | json }}</pre>
   <button type="submit" [disabled]="form.invalid" (click)="submit()">
     SUBMIT
   </button>
-
-  <pre>{{ form.value | json }}</pre>
 </form>
