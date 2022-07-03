@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Product } from '../../models/product.interface';
 
 @Component({
@@ -8,7 +8,7 @@ import { Product } from '../../models/product.interface';
   styleUrls: ['./stock-inventory.component.scss'],
 })
 export class StockInventoryComponent implements OnInit {
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
   products: Product[] = [
     {
@@ -30,24 +30,33 @@ export class StockInventoryComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  form: FormGroup = new FormGroup({
-    store: new FormGroup({
-      branch: new FormControl(''),
-      code: new FormControl(''),
+  // form: FormGroup = new FormGroup({
+  //   store: new FormGroup({
+  //     branch: new FormControl(''),
+  //     code: new FormControl(''),
+  //   }),
+  //   selector: this.createFormGroup({}),
+  //   stock: new FormArray([]),
+  // });
+
+  form = this.fb.group({
+    store: this.fb.group({
+      branch: '',
+      code: '',
     }),
     selector: this.createFormGroup({}),
     stock: new FormArray([]),
   });
 
   createFormGroup(stock: any) {
-    return new FormGroup({
+    return this.fb.group({
       // parseInt second parameter:
       // 2 = binary,
       // 8 = octal,
       // 10 = decimal,
       // 16 = hexadecimal.
-      product_id: new FormControl(parseInt(stock.product_id, 10) || ''),
-      quantity: new FormControl(stock.quantity || ''),
+      product_id: parseInt(stock.product_id, 10) || '',
+      quantity: stock.quantity || '',
     });
   }
 
