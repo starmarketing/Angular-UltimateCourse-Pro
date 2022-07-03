@@ -10,7 +10,9 @@
   ></stock-products>
   <hr />
   <h3>Stock Selector</h3>
-  <stock-selector [parent]="form"></stock-selector>
+  <stock-selector [parent]="form" 
+  (remove)="removeStock($event)"
+  ></stock-selector>
   
   <pre>{{ form.value | json }}</pre>
   <button type="submit" [disabled]="form.invalid" (click)="submit()">

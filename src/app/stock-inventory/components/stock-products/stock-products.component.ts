@@ -4,7 +4,7 @@ import { Product } from '../../models/product.interface';
 @Component({
   selector: 'stock-products',
   templateUrl: './stock-products.component.html',
-  styleUrls: ['./stock-products.component.scss']
+  styleUrls: ['./stock-products.component.scss'],
 })
 export class StockProductsComponent implements OnInit {
   @Input()
@@ -13,17 +13,14 @@ export class StockProductsComponent implements OnInit {
   @Input()
   products!: Product[];
 
-
   @Output()
   added: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onAdd(){
+  onAdd() {
     this.added.emit(this.parent.get('selector')?.value);
   }
-
 }

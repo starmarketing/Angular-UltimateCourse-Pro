@@ -56,6 +56,11 @@ export class StockInventoryComponent implements OnInit {
     st.push(this.createFormGroup(stock));
   }
 
+  removeStock(index: any) {
+    let st = this.form.get('stock') as FormArray;
+    st.removeAt(index);
+  }
+
   submit() {
     if (this.form.valid) console.log(this.form.value);
   }
